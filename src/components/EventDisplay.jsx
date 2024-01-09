@@ -1,22 +1,26 @@
 import React from 'react';
-// import EventList from './ApiComponent';
+import { Container } from 'react-bootstrap';
 
 function EventDisplay( { events = [] } ) {
  
-  // if (!events || events.length === 0) {
-  //   return <p>No events to display</p>
-  // }
-
   return (
     <ul>
       {events.map(event => (
-        <li key={event.id}>
-          <p>{event.name}</p>
-          <p>{event.dates.start.localDate}</p>
+        <Container className="event-container" key={event.id}>
+        <li>
+          <p>Event Name: {event.name}</p>
+          <p>City: {event._embedded.venues[0].city.name}</p>
+          <p>State: {event._embedded.venues[0].state.name}</p>
+          <p>Country: {event._embedded.venues[0].country.name}</p>
+          <p>Address: {event._embedded.venues[0].address.line1}</p>
+          <p>Date: {event.dates.start.localDate}</p>
         </li>
+        {/* <button className="button" onClick={handleBackButtonClick}>Back</button> */}
+        </Container>
       ))}
     </ul>
   );
 }
 
 export default EventDisplay;
+

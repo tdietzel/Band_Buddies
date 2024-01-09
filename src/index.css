@@ -1,0 +1,119 @@
+html {
+  background-color: lightgrey;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: black;
+  font-size: xx-large;
+}
+
+ .event-container {
+  background-color: rgb(255, 190, 105);
+  border: 5px solid black;
+  /* padding: 0px, 10px; */
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.event-container:hover {
+  border: 5px solid white;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.hero-section {
+  background-color:rgb(255, 190, 105);
+  color: black;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.button, button {
+  background-color: rgb(255, 190, 105);
+  color: black;
+  font-weight: bolder;
+  padding: 8px;
+}
+
+.button:hover, button:hover{
+  background-color: aqua;
+}
+
+.note {
+  animation: float 4s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+.note1 {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  font-size: 3em;
+}
+
+.note2 {
+  position: absolute;
+  top: 40%;
+  left: 80%;
+  font-size: 2em;
+  animation-delay: 2s;
+}
+
+.note3 {
+  position: absolute;
+  top: 70%;
+  left: 20%;
+  font-size: 4em;
+  animation-delay: 1s;
+}
+
+.note4 {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  font-size: 2.5em;
+  animation-delay: 3s;
+}
+
+.note5 {
+  position: absolute;
+  top: 80%;
+  left: 85%;
+  font-size: 3em;
+}
+
+.note6 {
+  position: absolute;
+  top: 20%;
+  left: 90%;
+  font-size: 2em;
+  animation-delay: 2.5s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* .button:hover {
+  background-color: aqua;
+} */
+
+.findEventsForm {
+ font-family: Raleway;
+ text-shadow: 3px 3px 6px rgb(54, 54, 54);
+} 
