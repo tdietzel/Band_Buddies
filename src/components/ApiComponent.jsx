@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import GenreFilter from './GenreFilter';
+// import GenreFilter from './GenreFilter'; 
+import EventDisplay from './EventDisplay';
 
 // REACT_APP_API_KEY=V2hjfkUOp6UAmB20EKaH9B97kxAwxMzF
 
-
+// const { city, classificationName } = props
 function EventList(props) {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [hasSearched, setHasSearched] = useState(false);
 
 
   function fetchEvents() {
-    const apiKey = process.env.REACT_APP_API_KEY;
-    const city = `Portland`;
+    const apiKey = import.meta.env.VITE_API_KEY;
+    console.log(import.meta.env.VITE_API_KEY, "IMPORT.META.ENV");
+    // console.log(process.env.VITE_API_KEY, "PROCESS.ENV");
+    const city = props.city || `Portland`;  //FEED ME THE VALUE W PROPS
+
+    const monthsInAdvance = props.monthsInAdvance || 1;
     
     const currentDate = new Date();
-    const oneMonthLater = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate());
+    const oneMonthLater = new Date(currentDate.getFullYear(), currentDate.getMonth() + monthsInAdvance, currentDate.getDate()); //THE PLUS ONE SHOULD BE WHATEVER THE USER ENTERS
     const startDateTime = currentDate.toISOString().split('.')[0]+"Z";
     const endDateTime = oneMonthLater.toISOString().split('.')[0]+"Z";
 
-    const classificationName = props.classificationName;
+    const classificationName = props.classificationName || 'music'; //GETS PROP FOR GENRE 
 
     //for music only
     const url = `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${apiKey}&city=${city}&startDateTime=${startDateTime}&endDateTime=${endDateTime}&classificationName=${classificationName}`;
@@ -30,7 +36,8 @@ function EventList(props) {
     .then(response => response.json())
     .then(data => {
       if(data._embedded) {
-        setEvents(data.embedded.events);
+        setEvents(data._embedded.events);
+        setLoading(false);
       }
       setLoading(false);
     })
@@ -41,30 +48,36 @@ function EventList(props) {
   };
 
   useEffect(() => {
+
+    if (props.city || props.classificationName || props.monthsInAdvance) {
+      fetchEvents();
+      setHasSearched(true);
+    }
     fetchEvents();
-  }, [props.classificationName]);
+  }, [props.classificationName, props.monthsInAdvance, props.city]);
 
   return (
     <div>
       {loading ? (
         <p>Loading events...</p>
+      ) : hasSearched && events.length === 0 ? (
+        <p>No events to display</p>
       ) : (
-        <ul>
-          {events.map(event => (
-            <li key={event.id}>
-              <p>{event.name}</p>
-              <p>{event.dates.start.localDate}</p>
-            </li>
-          ))}
-        </ul>
+        <EventDisplay events={events} />
       )}
     </div>
   );
 }
-
 export default EventList;
 
-
+{/* <ul>
+{events.map(event => (
+  <li key={event.id}>
+    <p>{event.name}</p>
+    <p>{event.dates.start.localDate}</p>
+  </li>
+))}
+</ul> */}
 
 
 
