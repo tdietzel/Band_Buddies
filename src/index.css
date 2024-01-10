@@ -117,3 +117,11 @@ body {
  font-family: Raleway;
  text-shadow: 3px 3px 6px rgb(54, 54, 54);
 } 
+
+.form-input-fields {
+  margin-left: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}

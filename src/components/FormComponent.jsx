@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react"
 import ApiComponent from "./ApiComponent"
 import { Container, Card } from "react-bootstrap";
 
-export default function FormComponent() {
+export default function FormComponent(props) {
+
+  console.log("FormComponent props", props);
+
   const [genre, setGenre] = useState('');
   const [location, setLocation] = useState('');
   const [months, setMonths] = useState('');
@@ -10,6 +13,8 @@ export default function FormComponent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("FormComponent onFormSubmit prop:", props.onFormSubmit);
+    props.onFormSubmit(genre, location, months);
     setDataSubmitted(true)
   }
 
@@ -23,15 +28,15 @@ export default function FormComponent() {
               <form onSubmit={handleSubmit}>
                 <Card.Text>
                   Select Genre Type:
-                  <input style={{marginLeft:'1rem'}} type='text' onChange={(e) => setGenre(e.target.value)} value={genre} />
+                  <input className='form-input-fields' type='text' onChange={(e) => setGenre(e.target.value)} value={genre} />
                 </Card.Text>
                 <Card.Text>
                   Choose Location Preference:
-                  <input style={{marginLeft:'1rem'}} type='text' onChange={(e) => setLocation(e.target.value)} value={location} placeholder="City"/>
+                  <input className='form-input-fields' type='text' onChange={(e) => setLocation(e.target.value)} value={location} placeholder="City"/>
                 </Card.Text>
                 <Card.Text>
                   Months in advance:
-                  <select style={{marginLeft:'1rem'}} onChange={(e) => setMonths(e.target.value)} value={months}>
+                  <select className='form-input-fields' onChange={(e) => setMonths(e.target.value)} value={months}>
                     <option value="1">1 month</option>
                     <option value="2">2 months</option>
                     <option value="3">3 months</option>

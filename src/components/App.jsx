@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ApiComponent from './ApiComponent';
 import FormComponent from './FormComponent';
-import EventDisplay from './EventDisplay'
+import EventDisplay from './EventDisplay';
 // any other components needed
 
 function App() {
@@ -22,15 +22,23 @@ function App() {
   };
 
   const handleBackButtonClick = () => {
+    console.log("Back button function in app");
     setIsFormVisible(true);
-    setEvents([]);
+    // setEvents([]);
   };
 
+
+
+  console.log('Passing onBackButtonClick to EventDisplay, in App', typeof handleBackButtonClick);
   return (
     <div>
     <div className="hero-section">
       <div className="note note1">♪</div>
       <div className="note note2">♫</div>
+      <div className="note note3">♪</div>
+      <div className="note note4">♫</div>
+      <div className="note note5">♪</div>
+      <div className="note note6">♫</div>
         <h1>Welcome to Band Buddies</h1>
         <p>Find your favorite concerts and bands in your city!</p>
       </div>
@@ -41,8 +49,8 @@ function App() {
         />
       ) : (
         <>
-          <button className="button" onClick={handleBackButtonClick}>Back</button>
-          <EventDisplay
+          <ApiComponent
+            onBackButtonClick={handleBackButtonClick}
             city={city} 
             classificationName={classificationName} 
             monthsInAdvance={monthsInAdvance}

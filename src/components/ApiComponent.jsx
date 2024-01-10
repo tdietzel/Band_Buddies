@@ -1,3 +1,5 @@
+//in ApiComponent
+import App from './App';
 import React, { useState, useEffect } from 'react';
 // import GenreFilter from './GenreFilter'; 
 import EventDisplay from './EventDisplay';
@@ -5,7 +7,10 @@ import EventDisplay from './EventDisplay';
 // REACT_APP_API_KEY=V2hjfkUOp6UAmB20EKaH9B97kxAwxMzF
 
 // const { city, classificationName } = props
-function EventList(props) {
+function ApiComponent(props) {
+
+  console.log("In ApiComponent, received onBackButtonClick:", typeof props.handleBackButtonClick);
+
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hasSearched, setHasSearched] = useState(false);
@@ -46,12 +51,12 @@ function EventList(props) {
 
   useEffect(() => {
 
-    if (props.city || props.classificationName || props.monthsInAdvance) {
+    if (props.city || props.classificationName || props.monthsInAdvance || props.handleBackButtonClick) {
       fetchEvents();
       setHasSearched(true);
     }
     fetchEvents();
-  }, [props.classificationName, props.monthsInAdvance, props.city]);
+  }, [props.classificationName, props.monthsInAdvance, props.city, props.handleBackButtonClick]);
 
   return (
     <div>
@@ -60,9 +65,13 @@ function EventList(props) {
       ) : hasSearched && events.length === 0 ? (
         <p>No events to display</p>
       ) : (
-        <EventDisplay events={events} />
+        <EventDisplay 
+        events={events}
+        onBackButtonClick={props.onBackButtonClick}
+         />
       )}
     </div>
   );
 }
-export default EventList;
+export default ApiComponent;
+//end ApiComponent
