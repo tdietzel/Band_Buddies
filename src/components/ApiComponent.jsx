@@ -1,16 +1,8 @@
-//in ApiComponent
 import App from './App';
 import React, { useState, useEffect } from 'react';
-// import GenreFilter from './GenreFilter'; 
 import EventDisplay from './EventDisplay';
 
-// REACT_APP_API_KEY=V2hjfkUOp6UAmB20EKaH9B97kxAwxMzF
-
-// const { city, classificationName } = props
 function ApiComponent(props) {
-
-  console.log("In ApiComponent, received onBackButtonClick:", typeof props.handleBackButtonClick);
-
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hasSearched, setHasSearched] = useState(false);
@@ -25,7 +17,7 @@ function ApiComponent(props) {
     const classificationName = props.classificationName || 'music'; //GETS PROP FOR GENRE 
     
     const currentDate = new Date();
-    const oneMonthLater = new Date(currentDate.getFullYear(), currentDate.getMonth() + monthsInAdvance, currentDate.getDate()); //THE PLUS ONE SHOULD BE WHATEVER THE USER ENTERS
+    const oneMonthLater = new Date(currentDate.getFullYear(), currentDate.getMonth() + monthsInAdvance, currentDate.getDate());
     const startDateTime = currentDate.toISOString().split('.')[0]+"Z";
     const endDateTime = oneMonthLater.toISOString().split('.')[0]+"Z";
 
@@ -74,4 +66,4 @@ function ApiComponent(props) {
   );
 }
 export default ApiComponent;
-//end ApiComponent
+
