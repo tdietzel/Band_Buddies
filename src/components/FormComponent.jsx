@@ -4,8 +4,6 @@ import { Container, Card } from "react-bootstrap";
 
 export default function FormComponent(props) {
 
-  console.log("FormComponent props", props);
-
   const [genre, setGenre] = useState('');
   const [location, setLocation] = useState('');
   const [months, setMonths] = useState('');
@@ -13,7 +11,6 @@ export default function FormComponent(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("FormComponent onFormSubmit prop:", props.onFormSubmit);
     props.onFormSubmit(genre, location, months);
     setDataSubmitted(true)
   }

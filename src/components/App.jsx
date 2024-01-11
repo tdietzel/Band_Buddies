@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ApiComponent from './ApiComponent';
 import FormComponent from './FormComponent';
 import EventDisplay from './EventDisplay';
-// any other components needed
 
 function App() {
   const [city, setCity] = useState('Portland');
@@ -22,14 +21,10 @@ function App() {
   };
 
   const handleBackButtonClick = () => {
-    console.log("Back button function in app");
     setIsFormVisible(true);
     // setEvents([]);
   };
 
-
-
-  console.log('Passing onBackButtonClick to EventDisplay, in App', typeof handleBackButtonClick);
   return (
     <div>
     <div className="hero-section">
@@ -54,7 +49,6 @@ function App() {
             city={city} 
             classificationName={classificationName} 
             monthsInAdvance={monthsInAdvance}
-            // pass other necessary props
           />
         </>
       )}
@@ -63,17 +57,4 @@ function App() {
 }
 
 export default App;
-
-// return (
-//   <div>
-//    <FormComponent 
-//    onFormChange={handleFormChange}
-//    onFormSubmit={handleFormSubmit} />
-//    <EventDisplay 
-//   //  events={events}
-//    city={city} 
-//    classificationName={classificationName} 
-//    monthsInAdvance={monthsInAdvance} />
-//   </div>
-// );
 

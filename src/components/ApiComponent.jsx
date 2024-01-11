@@ -36,19 +36,18 @@ function ApiComponent(props) {
       setLoading(false);
     })
     .catch(error => {
-      console.error('Error fetching data: ', error);
       setLoading(false);
     });
   };
 
   useEffect(() => {
 
-    if (props.city || props.classificationName || props.monthsInAdvance || props.handleBackButtonClick) {
+    if (props.city || props.classificationName || props.monthsInAdvance) {
       fetchEvents();
       setHasSearched(true);
     }
     fetchEvents();
-  }, [props.classificationName, props.monthsInAdvance, props.city, props.handleBackButtonClick]);
+  }, [props.classificationName, props.monthsInAdvance, props.city]);
 
   return (
     <div>

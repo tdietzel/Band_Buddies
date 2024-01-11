@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 
 function EventDisplay({ events = [], onBackButtonClick }) {
 
-  console.log("Received onBackButtonClick in EventDisplay", typeof onBackButtonClick); // should log 'function'
-  // console.log("Props in EventDisplay", props);
   return (
     <div>
       <button className="button" onClick={onBackButtonClick}>Back</button>
